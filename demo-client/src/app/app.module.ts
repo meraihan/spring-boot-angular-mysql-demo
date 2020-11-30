@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { BoardAdminComponent } from './admin/admin.component';
-import { BoardUserComponent } from './user/user.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { UserCreateComponent } from './user-create/user-create.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    BoardAdminComponent,
-    BoardUserComponent,
-    ProfileComponent
+    AdminComponent,
+    UserComponent,
+    ProfileComponent,
+    UserCreateComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

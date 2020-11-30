@@ -6,7 +6,7 @@ import { UserService } from '../_services/user.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class BoardAdminComponent implements OnInit {
+export class AdminComponent implements OnInit {
   content = '';
 
   constructor(private userService: UserService) { }
