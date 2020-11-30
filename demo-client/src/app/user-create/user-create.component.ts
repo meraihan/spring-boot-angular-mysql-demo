@@ -26,7 +26,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   goToUserList(){
-    this.router.navigate(['/users']);
+    this.router.navigate(['users']);
   }
 
   createUser(){

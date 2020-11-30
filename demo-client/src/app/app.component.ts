@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   goToUsers(){
-    this.router.navigate(['/users']);
+    this.router.navigate(['users']);
   }
 
   logout() {
