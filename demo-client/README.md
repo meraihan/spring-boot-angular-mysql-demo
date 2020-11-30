@@ -1,27 +1,43 @@
-# DemoClient
+# Angular 8 JWT Authentication example
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
+For more detail, please visit:
+> [Angular 8 JWT Authentication with HttpInterceptor and Router](https://bezkoder.com/angular-jwt-authentication/)
 
-## Development server
+## With Spring Boot back-end
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+> [Angular 8 + Spring Boot: JWT Authentication & Authorization example](https://bezkoder.com/angular-spring-boot-jwt-auth/)
 
-## Code scaffolding
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## With Node.js Express back-end
 
-## Build
+> [Node.js Express + Angular 8: JWT Authentication & Authorization example](https://bezkoder.com/node-js-express-angular-jwt-auth/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Open `app/_helpers/auth.interceptor.js`, modify the code to work with **x-access-token** like this:
+```js
+...
 
-## Running unit tests
+// const TOKEN_HEADER_KEY = 'Authorization'; // for Spring Boot back-end
+const TOKEN_HEADER_KEY = 'x-access-token';   // for Node.js Express back-end
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  ...
 
-## Running end-to-end tests
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    ...
+    if (token != null) {
+      // for Spring Boot back-end
+      // authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+      // for Node.js Express back-end
+      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
+    }
+    return next.handle(authReq);
+  }
+}
 
-## Further help
+...
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng serve --port 8081` for a dev server. Navigate to `http://localhost:8081/`.
